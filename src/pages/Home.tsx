@@ -113,7 +113,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Header />
       <main className="p-4 max-w-7xl mx-auto">
-        <div className="flex gap-4">
+        <div className="flex md:flex-row flex-col gap-4">
           <div className="flex-1">
             <div className="border border-gray-300 rounded">
               <div className="flex items-center justify-between border-b border-gray-300 py-2 px-6">
@@ -149,50 +149,54 @@ const Home: React.FC = () => {
                       className="hidden"
                       onEnded={handleEnded}
                     ></audio>
+                    <div className="flex">
+                      <Button
+                        onClick={handleSeekBackward}
+                        variant="ghost"
+                        size="icon"
+                      >
+                        <SkipBackIcon className="size-4" />
+                      </Button>
 
-                    <Button
-                      onClick={handleSeekBackward}
-                      variant="ghost"
-                      size="icon"
-                    >
-                      <SkipBackIcon className="size-4" />
-                    </Button>
+                      <Button
+                        size="icon"
+                        onClick={togglePlayPause}
+                        variant="ghost"
+                      >
+                        {isPlaying ? (
+                          <PauseCircleIcon className="size-6" />
+                        ) : (
+                          <PlayCircleIcon className="size-6" />
+                        )}
+                      </Button>
 
-                    <Button
-                      size="icon"
-                      onClick={togglePlayPause}
-                      variant="ghost"
-                    >
-                      {isPlaying ? (
-                        <PauseCircleIcon className="size-6" />
-                      ) : (
-                        <PlayCircleIcon className="size-6" />
-                      )}
-                    </Button>
+                      <Button
+                        onClick={handleSeekForward}
+                        variant="ghost"
+                        size="icon"
+                      >
+                        <SkipForwardIcon className="size-4" />
+                      </Button>
+                    </div>
 
-                    <Button
-                      onClick={handleSeekForward}
-                      variant="ghost"
-                      size="icon"
-                    >
-                      <SkipForwardIcon className="size-4" />
-                    </Button>
+                    <div className="flex flex-1">
+                      <Slider
+                        value={currentTime}
+                        max={duration}
+                        min={0}
+                        step={0.1}
+                        onValueChange={handleSeek}
+                        className="mx-4"
+                      />
 
-                    <Slider
-                      value={currentTime}
-                      max={duration}
-                      min={0}
-                      step={0.1}
-                      onValueChange={handleSeek}
-                      className="flex-grow mx-4"
-                    />
-
-                    <span className="text-gray-600 w-[120px]">
-                      {new Date(currentTime[0] * 1000)
-                        .toISOString()
-                        .substr(14, 5)}{" "}
-                      / {new Date(duration * 1000).toISOString().substr(14, 5)}
-                    </span>
+                      <span className="text-gray-600 w-[160px] text-sm">
+                        {new Date(currentTime[0] * 1000)
+                          .toISOString()
+                          .substr(14, 5)}{" "}
+                        /{" "}
+                        {new Date(duration * 1000).toISOString().substr(14, 5)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
