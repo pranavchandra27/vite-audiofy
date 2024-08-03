@@ -7,7 +7,6 @@ import VoiceSelector from "@/components/common/VoiceSelector";
 import Speed from "@/components/common/Speed";
 import {
   DownloadIcon,
-  Mic,
   PauseCircleIcon,
   PlayCircleIcon,
   SkipBackIcon,
