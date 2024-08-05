@@ -123,7 +123,7 @@ const Home: React.FC = () => {
               <Textarea
                 placeholder="Type your text here..."
                 value={text}
-                className="resize-none border-none p-6 outline-none"
+                className="resize-none border-none p-6 outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                 rows={8}
                 onChange={handleChange}
               />
