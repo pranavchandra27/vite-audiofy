@@ -9,6 +9,11 @@ interface VoiceSelectorProps {
 }
 
 const Speed: React.FC<VoiceSelectorProps> = ({ speed, onSpeedChange }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value || "0");
+    if (typeof value !== "number") return;
+    onSpeedChange([value]);
+  };
   return (
     <div className="mt-4">
       <Label htmlFor="speed" className="font-normal">
@@ -28,8 +33,10 @@ const Speed: React.FC<VoiceSelectorProps> = ({ speed, onSpeedChange }) => {
         />
         <span className="text-sm">4</span>
         <input
-          className="w-10 p-1 border border-gray-300 rounded text-center text-sm"
-          defaultValue={speed[0]}
+          className="w-10 p-1 border border-gray-300 rounded text-center text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          value={speed[0]}
+          type="number"
+          onChange={handleChange}
         />
       </div>
     </div>
